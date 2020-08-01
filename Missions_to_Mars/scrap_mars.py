@@ -45,6 +45,8 @@ def scrapeMars():
 	featuredImgUrl = f"https://www.jpl.nasa.gov{imgTag}"
 
 	# Scrape Twitter
+	# This code seems to sometimes not want to work usually rebooting
+	#	the flask server gets it to work again
 	url = "https://twitter.com/marswxreport?lang=en"
 	browser.visit(url)
 
@@ -65,7 +67,6 @@ def scrapeMars():
 	statsTable = tables[0]
 	statsTable.columns = (["Description", "Value"])
 	marsTable = statsTable.values.tolist()
-	print(marsTable)
 
 	#Scrap USGS Astrogeology
 	url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
@@ -100,6 +101,5 @@ def scrapeMars():
 				"imgList" : imgList
 				}
 
-	print(marsData)
 	browser.quit()
 	return marsData

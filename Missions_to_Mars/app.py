@@ -11,7 +11,6 @@ mongo = PyMongo(app,uri=conn)
 @app.route("/index")
 def index():
 	marsData = mongo.db.collection.find_one()
-	# print(marsData["title"])
 	return render_template('index.html', marsData=marsData)
 
 @app.route("/scrape")
