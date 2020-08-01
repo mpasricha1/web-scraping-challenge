@@ -48,6 +48,15 @@ def scrapeMars():
 	url = "https://twitter.com/marswxreport?lang=en"
 	browser.visit(url)
 
+	html = browser.html
+	soup = bs(html, "html.parser")
+
+	marsTweet = soup.find("section", class_="css-1dbjc4n")
+
+	tweet = marsTweet.find_all("span", class_="css-901oao css-16my406 r-1qd0xha r-ad9z0x r-bcqeeo r-qvutc0")
+	tweetTxt = tweet[4].text
+
+
 
 	#Scrap Mars Facts
 	url = "https://space-facts.com/mars/"
@@ -55,7 +64,6 @@ def scrapeMars():
 
 	statsTable = tables[0]
 	statsTable.columns = (["Description", "Value"])
-	#statsTable.set_index("Description", inplace=True)
 	marsTable = statsTable.values.tolist()
 	print(marsTable)
 
@@ -87,6 +95,7 @@ def scrapeMars():
 	marsData = {"title": title, 
 				"paragraph": paragraphText, 
 				"featuredImgUrl": featuredImgUrl,
+				"tweetTxt" : tweetTxt, 
 				"statsTable": marsTable,
 				"imgList" : imgList
 				}

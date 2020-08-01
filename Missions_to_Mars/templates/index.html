@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="jumbotron">
+		<div class="jumbotron bg-light">
 			<h1>Scrape Mars Data</h1>
 			<a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrap Data</a>
 		</div>
@@ -37,11 +37,11 @@
 					<div class="col-md-6">
 						<div class="card" style="width: 30rem;">
 							<div class="card-header bg-primary">
-								Twitter Data Here
+								Mars Weather
 							</div>
 							<div class='card-body'>
-								<h2 class="card-title">Twitter Title</h2>
-								<p class=card-text>Twitter Data</p>
+								<h2>Weather On Mars Today</h2>
+								<p class=card-text>{{ marsData.tweetTxt }}</p>
 							</div>
 						</div>
 					</div>
@@ -79,6 +79,8 @@
 	</div>
 
 	
+	<br>
+	<br>
 	<br>
 	<div class="container-fluid">
 		<div class="row">
