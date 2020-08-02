@@ -45,20 +45,21 @@ def scrapeMars():
 	featuredImgUrl = f"https://www.jpl.nasa.gov{imgTag}"
 
 	# Scrape Twitter
-	# This code seems to sometimes not want to work usually rebooting
-	#	the flask server gets it to work again
+	# This code seems to sometimes not want to work usually had a hard time nailing down 
+	# where the tweet is on the page
+	# seems to run on the first start up of the server
 	url = "https://twitter.com/marswxreport?lang=en"
 	browser.visit(url)
 
 	html = browser.html
 	soup = bs(html, "html.parser")
+	try:
+		marsTweet = soup.find("section", class_="css-1dbjc4n")
 
-	marsTweet = soup.find("section", class_="css-1dbjc4n")
-
-	tweet = marsTweet.find_all("span", class_="css-901oao css-16my406 r-1qd0xha r-ad9z0x r-bcqeeo r-qvutc0")
-	tweetTxt = tweet[4].text
-
-
+		tweet = marsTweet.find_all("span", class_="css-901oao css-16my406 r-1qd0xha r-ad9z0x r-bcqeeo r-qvutc0")
+		tweetTxt = tweet[4].text
+	except:
+		tweetTxt = 'No tweet available'
 
 	#Scrap Mars Facts
 	url = "https://space-facts.com/mars/"
